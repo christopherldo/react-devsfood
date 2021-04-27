@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import HomeScreen from './pages/HomeScreen';
@@ -9,7 +9,7 @@ export default () => {
   const name = useSelector((state) => state.user.name);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <h1>
         Oi,
         {' '}
@@ -24,6 +24,6 @@ export default () => {
           <Tela2Screen />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
