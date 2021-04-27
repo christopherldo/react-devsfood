@@ -8,7 +8,8 @@ export const Container = styled.div`
 
 export const Menu = styled.div`
   display: flex;
-  background-color: #0f0;
+  flex-flow: column;
+  background-color: #136713;
   width: 80px;
 `;
 
