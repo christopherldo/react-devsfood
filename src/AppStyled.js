@@ -9,8 +9,16 @@ export const Container = styled.div`
 export const Menu = styled.div`
   display: flex;
   flex-flow: column;
+  justify-content: center;
   background-color: #136713;
   width: 80px;
+
+  &:hover {
+    a {
+      opacity: 0.5;
+      background-color: transparent;
+    };
+  };
 `;
 
 export const PageBody = styled.div`
