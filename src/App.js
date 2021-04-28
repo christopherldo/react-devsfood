@@ -3,6 +3,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Container, Menu, PageBody } from './AppStyled';
 import HomeScreen from './pages/HomeScreen';
 import MenuItem from './components/MenuItem';
+import PrivateRoute from './components/PrivateRoute';
 
 export default () => (
   <HashRouter>
@@ -17,6 +18,12 @@ export default () => (
           <Route exact path="/">
             <HomeScreen />
           </Route>
+          <PrivateRoute exact path="/orders">
+            <div>Tela de pedidos</div>
+          </PrivateRoute>
+          <PrivateRoute exact path="/profile">
+            <div>Tela de perfil</div>
+          </PrivateRoute>
         </Switch>
       </PageBody>
       {/* <Cart /> */}
