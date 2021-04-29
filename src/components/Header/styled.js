@@ -25,6 +25,6 @@ export const SearchInput = styled.input`
   background-position: 10px center;
   outline: 0;
   padding-left: 50px;
-  cursor: pointer;
   transition: all 0.2s ease-in-out 0s;
+  cursor: ${(props) => (props.active ? 'text' : 'pointer')};
 `;

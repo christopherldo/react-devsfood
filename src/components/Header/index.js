@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Logo, SearchInput } from './styled';
 
-const Header = () => {
-  const [inputActive, setInputActive] = useState(false);
+const Header = ({ search, onSearch }) => {
+  const [inputActive, setInputActive] = useState(!!search);
 
   const handleInputFocus = () => {
     setInputActive(true);
   };
 
   const handleInputBlur = () => {
-    setInputActive(false);
+    if (search === '') {
+      setInputActive(false);
+    }
   };
 
   return (
@@ -21,9 +24,16 @@ const Header = () => {
         placeholder="Digite um produto..."
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
+        value={search}
+        onChange={(e) => onSearch(e.target.value)}
       />
     </Container>
   );
+};
+
+Header.propTypes = {
+  search: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default Header;
