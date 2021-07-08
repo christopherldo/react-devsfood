@@ -1,8 +1,10 @@
 import React from 'react';
-import { Container } from './styled';
+import { Container, CategoryImage } from './styled';
 
-const CategoryItem = () => (
-  <Container />
+const CategoryItem = ({ data, activeCategory }) => (
+  <Container active={activeCategory} id={data.id}>
+    <CategoryImage src={data.image} />
+  </Container>
 );
 
 export default CategoryItem;

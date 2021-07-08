@@ -11,6 +11,7 @@ const HomeScreen = () => {
   const history = useHistory();
   const [headerSearch, setHeaderSearch] = useState('');
   const [categories, setCategories] = useState([]);
+  const [activeCategory, setActiveCategory] = useState(0);
 
   const getCategories = async () => {
     try {
@@ -36,7 +37,10 @@ const HomeScreen = () => {
             Selecione uma categoria
 
             <CategoryList>
-              <CategoryItem title="Todas as Categorias" image="food-and-restaurant.png" />
+              <CategoryItem data={{ id: 0, title: 'Todas as Categorias', image: './assets/food-and-restaurant.png' }} activeCategory={activeCategory} />
+              {categories.map((item) => (
+                <CategoryItem key={item.id} data={item} activeCategory={activeCategory} />
+              ))}
             </CategoryList>
           </CategoryArea>
           )}
