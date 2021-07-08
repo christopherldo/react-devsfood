@@ -20,6 +20,7 @@ const HomeScreen = () => {
         setCategories(cat.result);
       }
     } catch (error) {
+      // eslint-disable-next-line no-alert
       alert(`${error}: ${error.message}`);
     }
   };
@@ -27,6 +28,10 @@ const HomeScreen = () => {
   useEffect(async () => {
     getCategories();
   }, []);
+
+  useEffect(() => {
+
+  }, [activeCategory]);
 
   return (
     <Container>
@@ -37,9 +42,14 @@ const HomeScreen = () => {
             Selecione uma categoria
 
             <CategoryList>
-              <CategoryItem data={{ id: 0, title: 'Todas as Categorias', image: './assets/food-and-restaurant.png' }} activeCategory={activeCategory} />
+              <CategoryItem data={{ id: 0, title: 'Todas as Categorias', image: './assets/food-and-restaurant.png' }} activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
               {categories.map((item) => (
-                <CategoryItem key={item.id} data={item} activeCategory={activeCategory} />
+                <CategoryItem
+                  key={item.id}
+                  data={item}
+                  activeCategory={activeCategory}
+                  setActiveCategory={setActiveCategory}
+                />
               ))}
             </CategoryList>
           </CategoryArea>

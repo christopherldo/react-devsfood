@@ -10,6 +10,7 @@ export const Container = styled.div`
     border-radius: 20px;
     cursor: pointer;
     margin-right: 10px;
+    transition: all 0.3s ease-in-out 0s;
 `;
 
 export const CategoryImage = styled.img`
