@@ -20,6 +20,7 @@
     "rules": {
         "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
         "import/no-named-as-default": 0,
-        "react/jsx-props-no-spreading": [1, {"exceptions": ["Route"]}]
+        "react/jsx-props-no-spreading": [1, {"exceptions": ["Route"]}],
+        "linebreak-style": 0
     }
 }
