@@ -1,10 +1,45 @@
 import React from 'react';
-import {} from './styled';
+import PropTypes from 'prop-types';
+import {
+  Container,
+  ProductPhotoArea,
+  ProductInfoArea,
+  ProductButtonArea,
+  ProductPhoto,
+  ProductName,
+  ProductPrice,
+  ProductIngredients,
+  ProductButton,
+} from './styled';
 
-const ProductItem = () => (
-  <>
+const ProductItem = ({ data }) => (
+  <Container>
+    <ProductPhotoArea>
+      <ProductPhoto src={data.image} />
+    </ProductPhotoArea>
 
-  </>
+    <ProductInfoArea>
+      <ProductName>{data.name}</ProductName>
+      <ProductPrice>{data.price}</ProductPrice>
+      <ProductIngredients>{data.ingredients}</ProductIngredients>
+    </ProductInfoArea>
+
+    <ProductButtonArea>
+      <ProductButton src="./assets/next.png" />
+    </ProductButtonArea>
+  </Container>
 );
+
+ProductItem.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number,
+    id_cat: PropTypes.number,
+    image: PropTypes.string.isRequired,
+    ingredients: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    points: PropTypes.number,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 export default ProductItem;
