@@ -34,4 +34,8 @@ export default {
     const categories = await fetchGet('/categories');
     return categories;
   },
+  async getProducts() {
+    const products = await fetchGet('/products');
+    return products;
+  },
 };

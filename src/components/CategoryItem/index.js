@@ -9,11 +9,11 @@ const CategoryItem = ({ data, activeCategory, setActiveCategory }) => (
 );
 
 CategoryItem.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
+  data: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-  })).isRequired,
+  }).isRequired,
   activeCategory: PropTypes.number.isRequired,
   setActiveCategory: PropTypes.func.isRequired,
 };
