@@ -26,6 +26,7 @@ export const ProductButtonArea = styled.div`
 
 export const ProductPhoto = styled.img`
     width: 100%;
+    border-radius: 5px;
 `;
 
 export const ProductName = styled.div`

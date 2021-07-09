@@ -15,6 +15,7 @@ import {
 import Header from '../../components/Header';
 import CategoryItem from '../../components/CategoryItem';
 import ProductItem from '../../components/ProductItem';
+import Modal from '../../components/Modal';
 
 import api from '../../api';
 
@@ -26,6 +27,8 @@ const HomeScreen = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
+
+  const [modalStatus, setmodalStatus] = useState(true);
 
   const [activeCategory, setActiveCategory] = useState(0);
   const [activePage, setactivePage] = useState(1);
@@ -130,6 +133,10 @@ const HomeScreen = () => {
           ))}
         </ProductPaginationArea>
       )}
+
+      <Modal status={modalStatus} setStatus={setmodalStatus}>
+        Conteúdo do Modal
+      </Modal>
     </Container>
   );
 };
