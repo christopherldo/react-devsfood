@@ -18,6 +18,8 @@ import ProductItem from '../../components/ProductItem';
 
 import api from '../../api';
 
+let timer;
+
 const HomeScreen = () => {
   const history = useHistory();
   const [headerSearch, setHeaderSearch] = useState('');
@@ -43,6 +45,7 @@ const HomeScreen = () => {
   };
 
   const getProducts = async () => {
+    setProducts([]);
     try {
       const prods = await api.getProducts();
       if (prods.error === '') {
@@ -51,7 +54,7 @@ const HomeScreen = () => {
 
         setTotalPages(() => {
           const pagesArray = [];
-          for (let i = 0; i < 10; i += 1) {
+          for (let i = 0; i < prods.result.pages; i += 1) {
             pagesArray.push(i);
           }
           return pagesArray;
@@ -68,9 +71,16 @@ const HomeScreen = () => {
   }, []);
 
   useEffect(() => {
-    setProducts([]);
     getProducts();
   }, [activeCategory, activePage]);
+
+  useEffect(() => {
+    clearTimeout(timer);
+
+    if (headerSearch) {
+      timer = setTimeout(getProducts, 1000);
+    }
+  }, [headerSearch]);
 
   return (
     <Container>
