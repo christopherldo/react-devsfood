@@ -20,7 +20,11 @@ const ProductItem = ({ data }) => (
 
     <ProductInfoArea>
       <ProductName>{data.name}</ProductName>
-      <ProductPrice>{data.price}</ProductPrice>
+      <ProductPrice>
+        R$
+        {' '}
+        {parseFloat(data.price).toFixed(2)}
+      </ProductPrice>
       <ProductIngredients>{data.ingredients}</ProductIngredients>
     </ProductInfoArea>
 
@@ -35,7 +39,7 @@ ProductItem.propTypes = {
     id: PropTypes.number,
     id_cat: PropTypes.number,
     image: PropTypes.string.isRequired,
-    ingredients: PropTypes.string.isRequired,
+    ingredients: PropTypes.string,
     name: PropTypes.string.isRequired,
     points: PropTypes.number,
     price: PropTypes.number.isRequired,
