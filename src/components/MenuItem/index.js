@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { LinkArea, LinkIcon } from './styled';
 
-const MenuItem = ({ icon, link }) => {
+const MenuItem = ({ title, icon, link }) => {
   const location = useLocation();
   const isActive = location.pathname === link;
 
   return (
-    <LinkArea isActive={isActive}>
+    <LinkArea data-tip={title} data-for="tip-right" isActive={isActive}>
       <Link to={link}>
         <LinkIcon src={icon} />
       </Link>
@@ -17,6 +17,7 @@ const MenuItem = ({ icon, link }) => {
 };
 
 MenuItem.propTypes = {
+  title: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
 };

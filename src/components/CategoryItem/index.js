@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, CategoryImage } from './styled';
 
 const CategoryItem = ({ data, activeCategory, setActiveCategory }) => (
-  <Container active={activeCategory} id={data.id} onClick={() => setActiveCategory(data.id)}>
+  <Container data-tip={data.name} data-for="tip-top" active={activeCategory} id={data.id} onClick={() => setActiveCategory(data.id)}>
     <CategoryImage src={data.image} />
   </Container>
 );
