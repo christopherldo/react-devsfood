@@ -47,7 +47,7 @@ const HomeScreen = () => {
   const getProducts = async () => {
     setProducts([]);
     try {
-      const prods = await api.getProducts();
+      const prods = await api.getProducts(activeCategory, activePage, headerSearch);
       if (prods.error === '') {
         setProducts(prods.result.data);
         setactivePage(prods.result.page);
