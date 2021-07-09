@@ -3,7 +3,13 @@ import { useHistory } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 
 import {
-  Container, CategoryArea, CategoryList, ProductArea, ProductList,
+  Container,
+  CategoryArea,
+  CategoryList,
+  ProductArea,
+  ProductList,
+  ProductPaginationArea,
+  ProductPaginationItem,
 } from './styled';
 
 import Header from '../../components/Header';
@@ -16,8 +22,11 @@ const HomeScreen = () => {
   const history = useHistory();
   const [headerSearch, setHeaderSearch] = useState('');
   const [categories, setCategories] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(0);
   const [products, setProducts] = useState([]);
+  const [totalPages, setTotalPages] = useState([]);
+
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [activePage, setactivePage] = useState(1);
 
   const getCategories = async () => {
     try {
@@ -38,6 +47,15 @@ const HomeScreen = () => {
       const prods = await api.getProducts();
       if (prods.error === '') {
         setProducts(prods.result.data);
+        setactivePage(prods.result.page);
+
+        setTotalPages(() => {
+          const pagesArray = [];
+          for (let i = 0; i < prods.result.pages; i += 1) {
+            pagesArray.push(i);
+          }
+          return pagesArray;
+        });
       }
     } catch (error) {
       // eslint-disable-next-line no-alert
@@ -84,6 +102,17 @@ const HomeScreen = () => {
           ))}
         </ProductList>
       </ProductArea>
+      )}
+
+      {totalPages.length > 0
+      && (
+        <ProductPaginationArea>
+          {totalPages.map((item) => (
+            <ProductPaginationItem key={item}>
+              {item + 1}
+            </ProductPaginationItem>
+          ))}
+        </ProductPaginationArea>
       )}
     </Container>
   );
