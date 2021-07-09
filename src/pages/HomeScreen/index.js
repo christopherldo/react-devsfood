@@ -51,7 +51,7 @@ const HomeScreen = () => {
 
         setTotalPages(() => {
           const pagesArray = [];
-          for (let i = 0; i < prods.result.pages; i += 1) {
+          for (let i = 0; i < 10; i += 1) {
             pagesArray.push(i);
           }
           return pagesArray;
@@ -68,8 +68,9 @@ const HomeScreen = () => {
   }, []);
 
   useEffect(() => {
+    setProducts([]);
     getProducts();
-  }, [activeCategory]);
+  }, [activeCategory, activePage]);
 
   return (
     <Container>
@@ -108,7 +109,12 @@ const HomeScreen = () => {
       && (
         <ProductPaginationArea>
           {totalPages.map((item) => (
-            <ProductPaginationItem key={item}>
+            <ProductPaginationItem
+              key={item}
+              active={activePage}
+              current={item + 1}
+              onClick={() => setactivePage(item + 1)}
+            >
               {item + 1}
             </ProductPaginationItem>
           ))}
