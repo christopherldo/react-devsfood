@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const ModalBody = styled.div`
-    max-width: 90vh;
+    max-width: 90vw;
     max-height: 90vh;
     background-color: #fff;
     margin: auto;
