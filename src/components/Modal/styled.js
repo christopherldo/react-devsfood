@@ -12,8 +12,11 @@ export const Container = styled.div`
 `;
 
 export const ModalBody = styled.div`
-    width: 300px;
-    height: 300px;
+    max-width: 90vh;
+    max-height: 90vh;
     background-color: #fff;
     margin: auto;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px #000;
+    overflow: auto;
 `;

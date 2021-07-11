@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, ModalBody } from './styled';
 
 const Modal = ({ children, status, setStatus }) => (
-  <Container status={status} onClick={() => setStatus(!status)}>
+  <Container status={status} onClick={() => setStatus(false)}>
     <ModalBody onClick={(e) => e.stopPropagation()}>
       {children}
     </ModalBody>
