@@ -12,27 +12,33 @@ import {
   ProductButton,
 } from './styled';
 
-const ProductItem = ({ data }) => (
-  <Container>
-    <ProductPhotoArea>
-      <ProductPhoto src={data.image} />
-    </ProductPhotoArea>
+const ProductItem = ({ data, onClick }) => {
+  const handleClick = () => {
+    onClick(data);
+  };
 
-    <ProductInfoArea>
-      <ProductName>{data.name}</ProductName>
-      <ProductPrice>
-        R$
-        {' '}
-        {parseFloat(data.price).toFixed(2)}
-      </ProductPrice>
-      <ProductIngredients>{data.ingredients}</ProductIngredients>
-    </ProductInfoArea>
+  return (
+    <Container onClick={handleClick}>
+      <ProductPhotoArea>
+        <ProductPhoto src={data.image} />
+      </ProductPhotoArea>
 
-    <ProductButtonArea>
-      <ProductButton src="./assets/next.png" />
-    </ProductButtonArea>
-  </Container>
-);
+      <ProductInfoArea>
+        <ProductName>{data.name}</ProductName>
+        <ProductPrice>
+          R$
+          {' '}
+          {parseFloat(data.price).toFixed(2)}
+        </ProductPrice>
+        <ProductIngredients>{data.ingredients}</ProductIngredients>
+      </ProductInfoArea>
+
+      <ProductButtonArea>
+        <ProductButton src="./assets/next.png" />
+      </ProductButtonArea>
+    </Container>
+  );
+};
 
 ProductItem.propTypes = {
   data: PropTypes.shape({
@@ -44,6 +50,7 @@ ProductItem.propTypes = {
     points: PropTypes.number,
     price: PropTypes.number.isRequired,
   }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ProductItem;

@@ -29,7 +29,8 @@ const HomeScreen = () => {
   const [products, setProducts] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
 
-  const [modalStatus, setmodalStatus] = useState(true);
+  const [modalStatus, setmodalStatus] = useState(false);
+  const [modalData, setModalData] = useState({});
 
   const [activeCategory, setActiveCategory] = useState(0);
   const [activePage, setactivePage] = useState(1);
@@ -70,6 +71,11 @@ const HomeScreen = () => {
     }
   };
 
+  const handleProductClick = (data) => {
+    setModalData(data);
+    setmodalStatus(true);
+  };
+
   useEffect(async () => {
     getCategories();
   }, []);
@@ -106,7 +112,7 @@ const HomeScreen = () => {
       <ProductArea>
         <ProductList>
           {products.map((item) => (
-            <ProductItem key={item.id} data={item} />
+            <ProductItem key={item.id} data={item} onClick={handleProductClick} />
           ))}
         </ProductList>
       </ProductArea>
@@ -129,7 +135,7 @@ const HomeScreen = () => {
       )}
 
       <Modal status={modalStatus} setStatus={setmodalStatus}>
-        <ModalProduct />
+        <ModalProduct data={modalData} />
       </Modal>
     </Container>
   );

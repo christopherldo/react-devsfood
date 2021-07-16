@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Container,
   ProductArea,
@@ -9,14 +10,14 @@ import {
   ProductQuantityArea,
 } from './styled';
 
-const ModalProduct = () => (
+const ModalProduct = ({ data }) => (
   <Container>
     <ProductArea>
-      <ProductPhoto src="" />
+      <ProductPhoto src={data.image} />
 
       <ProductInfoArea>
         <ProductDetails>
-          ...
+          {data.name}
         </ProductDetails>
 
         <ProductQuantityArea>
@@ -30,5 +31,17 @@ const ModalProduct = () => (
     </ProductButtons>
   </Container>
 );
+
+ModalProduct.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number,
+    id_cat: PropTypes.number,
+    image: PropTypes.string,
+    ingredients: PropTypes.string,
+    name: PropTypes.string,
+    points: PropTypes.number,
+    price: PropTypes.number,
+  }).isRequired,
+};
 
 export default ModalProduct;
