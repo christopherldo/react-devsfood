@@ -8,6 +8,9 @@ import {
   ProductInfoArea,
   ProductDetails,
   ProductQuantityArea,
+  ProductName,
+  ProductIngredients,
+  ProductButton,
 } from './styled';
 
 const ModalProduct = ({ data }) => (
@@ -17,7 +20,13 @@ const ModalProduct = ({ data }) => (
 
       <ProductInfoArea>
         <ProductDetails>
-          {data.name}
+          <ProductName>
+            {data.name}
+          </ProductName>
+
+          <ProductIngredients>
+            {data.ingredients}
+          </ProductIngredients>
         </ProductDetails>
 
         <ProductQuantityArea>
@@ -27,7 +36,9 @@ const ModalProduct = ({ data }) => (
     </ProductArea>
 
     <ProductButtons>
-      ...
+      <ProductButton>Cancelar</ProductButton>
+
+      <ProductButton>Adicionar ao Carrinho</ProductButton>
     </ProductButtons>
   </Container>
 );

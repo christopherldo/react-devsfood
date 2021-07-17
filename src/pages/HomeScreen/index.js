@@ -81,9 +81,13 @@ const HomeScreen = () => {
   }, []);
 
   useEffect(() => {
+    getProducts();
+  }, [activeCategory, activePage]);
+
+  useEffect(() => {
     clearTimeout(timer);
     timer = setTimeout(getProducts, 1000);
-  }, [activeCategory, activePage, headerSearch]);
+  }, [headerSearch]);
 
   return (
     <Container>
