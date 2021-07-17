@@ -11,6 +11,10 @@ import {
   ProductName,
   ProductIngredients,
   ProductButton,
+  ProductQuantity,
+  ProductQtImage,
+  ProductQtText,
+  ProductPrice,
 } from './styled';
 
 const ModalProduct = ({ data }) => (
@@ -30,13 +34,27 @@ const ModalProduct = ({ data }) => (
         </ProductDetails>
 
         <ProductQuantityArea>
-          ...
+          <ProductQuantity>
+            <ProductQtImage src="./assets/minus.png" />
+
+            <ProductQtText>
+              1
+            </ProductQtText>
+
+            <ProductQtImage src="./assets/plus.png" />
+          </ProductQuantity>
+
+          <ProductPrice>
+            R$
+            {' '}
+            {parseFloat(data.price).toFixed(2)}
+          </ProductPrice>
         </ProductQuantityArea>
       </ProductInfoArea>
     </ProductArea>
 
     <ProductButtons>
-      <ProductButton>Cancelar</ProductButton>
+      <ProductButton small>Cancelar</ProductButton>
 
       <ProductButton>Adicionar ao Carrinho</ProductButton>
     </ProductButtons>
