@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   CartArea,
   CartHeader,
@@ -18,60 +18,78 @@ import {
 } from './styled';
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
 
   const [show, setShow] = useState(true);
 
-  const handleProductChange = (key, type) => {
-
+  const handleProductChange = (id, type) => {
+    dispatch({
+      type: 'CHANGE_PRODUCT',
+      payload: {
+        id,
+        type,
+      },
+    });
   };
 
+  useEffect(() => {
+    if (products.length === 0) {
+      setShow(false);
+    }
+  }, [products]);
+
   return (
-    <CartArea>
-      <CartHeader onClick={() => setShow(!show)}>
-        <CartIcon src="/assets/cart.png" />
+    <>
+      {products.length > 0
+      && (
+      <CartArea>
+        <CartHeader onClick={() => products.length && setShow(!show)}>
+          <CartIcon src="/assets/cart.png" />
 
-        <CartText>
-          Meu Carrinho (
-          {products.length}
-          )
-        </CartText>
+          <CartText>
+            Meu Carrinho (
+            {products.length}
+            )
+          </CartText>
 
-        {show
+          {show
         && <CartIcon src="./assets/down.png" />}
-      </CartHeader>
-      <CartBody show={show}>
-        <ProductsArea>
-          {products.map((item) => (
-            <ProductItem key={item.id}>
-              <ProductPhoto src={item.image} />
+        </CartHeader>
+        <CartBody show={show}>
+          <ProductsArea>
+            {products.map((item) => (
+              <ProductItem key={item.id}>
+                <ProductPhoto src={item.image} />
 
-              <ProductInfoArea>
-                <ProductName>
-                  {item.name}
-                </ProductName>
+                <ProductInfoArea>
+                  <ProductName>
+                    {item.name}
+                  </ProductName>
 
-                <ProductPrice>
-                  R$
-                  {' '}
-                  {parseFloat(item.price).toFixed(2).replace('.', ',')}
-                </ProductPrice>
-              </ProductInfoArea>
+                  <ProductPrice>
+                    R$
+                    {' '}
+                    {parseFloat(item.price).toFixed(2).replace('.', ',')}
+                  </ProductPrice>
+                </ProductInfoArea>
 
-              <ProductQuantityArea>
-                <ProductQtIcon onClick={() => handleProductChange(item.id, '-')} src="./assets/minus.png" />
+                <ProductQuantityArea>
+                  <ProductQtIcon onClick={() => handleProductChange(item.id, '-')} src="./assets/minus.png" />
 
-                <ProductQtText>
-                  {item.qt}
-                </ProductQtText>
+                  <ProductQtText>
+                    {item.qt}
+                  </ProductQtText>
 
-                <ProductQtIcon onClick={() => handleProductChange(item.id, '+')} src="./assets/plus.png" />
-              </ProductQuantityArea>
-            </ProductItem>
-          ))}
-        </ProductsArea>
-      </CartBody>
-    </CartArea>
+                  <ProductQtIcon onClick={() => handleProductChange(item.id, '+')} src="./assets/plus.png" />
+                </ProductQuantityArea>
+              </ProductItem>
+            ))}
+          </ProductsArea>
+        </CartBody>
+      </CartArea>
+      )}
+    </>
   );
 };
 
