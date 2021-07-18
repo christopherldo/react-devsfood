@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
@@ -17,49 +17,65 @@ import {
   ProductPrice,
 } from './styled';
 
-const ModalProduct = ({ data }) => (
-  <Container>
-    <ProductArea>
-      <ProductPhoto src={data.image} />
+const ModalProduct = ({ data, setStatus }) => {
+  const [qt, setQt] = useState(1);
 
-      <ProductInfoArea>
-        <ProductDetails>
-          <ProductName>
-            {data.name}
-          </ProductName>
+  const handleMinusQt = () => {
+    if (qt > 1) setQt(qt - 1);
+  };
 
-          <ProductIngredients>
-            {data.ingredients}
-          </ProductIngredients>
-        </ProductDetails>
+  const handlePlusQt = () => {
+    setQt(qt + 1);
+  };
 
-        <ProductQuantityArea>
-          <ProductQuantity>
-            <ProductQtImage src="./assets/minus.png" />
+  useEffect(() => {
+    setQt(1);
+  }, [data]);
 
-            <ProductQtText>
-              1
-            </ProductQtText>
+  return (
+    <Container>
+      <ProductArea>
+        <ProductPhoto src={data.image} />
 
-            <ProductQtImage src="./assets/plus.png" />
-          </ProductQuantity>
+        <ProductInfoArea>
+          <ProductDetails>
+            <ProductName>
+              {data.name}
+            </ProductName>
 
-          <ProductPrice>
-            R$
-            {' '}
-            {parseFloat(data.price).toFixed(2)}
-          </ProductPrice>
-        </ProductQuantityArea>
-      </ProductInfoArea>
-    </ProductArea>
+            <ProductIngredients>
+              {data.ingredients}
+            </ProductIngredients>
+          </ProductDetails>
 
-    <ProductButtons>
-      <ProductButton small>Cancelar</ProductButton>
+          <ProductQuantityArea>
+            <ProductQuantity>
+              <ProductQtImage onClick={handleMinusQt} src="./assets/minus.png" />
 
-      <ProductButton>Adicionar ao Carrinho</ProductButton>
-    </ProductButtons>
-  </Container>
-);
+              <ProductQtText>
+                {qt}
+              </ProductQtText>
+
+              <ProductQtImage onClick={handlePlusQt} src="./assets/plus.png" />
+            </ProductQuantity>
+
+            <ProductPrice>
+              R$
+              {' '}
+              {parseFloat(data.price * qt).toFixed(2).replace('.', ',')}
+            </ProductPrice>
+          </ProductQuantityArea>
+        </ProductInfoArea>
+      </ProductArea>
+
+      <ProductButtons>
+        <ProductButton small onClick={() => setStatus(false)}>Cancelar</ProductButton>
+
+        <ProductButton>Adicionar ao Carrinho</ProductButton>
+      </ProductButtons>
+    </Container>
+  );
+};
 
 ModalProduct.propTypes = {
   data: PropTypes.shape({
@@ -71,6 +87,7 @@ ModalProduct.propTypes = {
     points: PropTypes.number,
     price: PropTypes.number,
   }).isRequired,
+  setStatus: PropTypes.func.isRequired,
 };
 
 export default ModalProduct;

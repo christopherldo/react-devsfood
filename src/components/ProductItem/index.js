@@ -28,7 +28,7 @@ const ProductItem = ({ data, onClick }) => {
         <ProductPrice>
           R$
           {' '}
-          {parseFloat(data.price).toFixed(2)}
+          {parseFloat(data.price).toFixed(2).replace('.', ',')}
         </ProductPrice>
         <ProductIngredients>{data.ingredients}</ProductIngredients>
       </ProductInfoArea>

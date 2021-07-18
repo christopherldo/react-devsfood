@@ -139,7 +139,7 @@ const HomeScreen = () => {
       )}
 
       <Modal status={modalStatus} setStatus={setmodalStatus}>
-        <ModalProduct data={modalData} />
+        <ModalProduct data={modalData} setStatus={setmodalStatus} />
       </Modal>
     </Container>
   );
