@@ -12,6 +12,7 @@ export const CartArea = styled.div`
 export const CartHeader = styled.div`
   width: 290px;
   height: 50px;
+  padding-right: 5px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -24,8 +25,11 @@ export const CartIcon = styled.img`
 `;
 
 export const CartText = styled.div`
+  flex: 1;
   color: #fff;
   font-size: 17px;
 `;
 
-export const CartBody = styled.div``;
+export const CartBody = styled.div`
+  display: ${(props) => (props.show ? 'block' : 'none')};
+`;
