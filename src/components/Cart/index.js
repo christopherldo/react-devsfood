@@ -13,12 +13,18 @@ import {
   ProductName,
   ProductPrice,
   ProductQuantityArea,
+  ProductQtIcon,
+  ProductQtText,
 } from './styled';
 
 const Cart = () => {
   const products = useSelector((state) => state.cart.products);
 
   const [show, setShow] = useState(true);
+
+  const handleProductChange = (key, type) => {
+
+  };
 
   return (
     <CartArea>
@@ -53,7 +59,13 @@ const Cart = () => {
               </ProductInfoArea>
 
               <ProductQuantityArea>
-                ...
+                <ProductQtIcon onClick={() => handleProductChange(item.id, '-')} src="./assets/minus.png" />
+
+                <ProductQtText>
+                  {item.qt}
+                </ProductQtText>
+
+                <ProductQtIcon onClick={() => handleProductChange(item.id, '+')} src="./assets/plus.png" />
               </ProductQuantityArea>
             </ProductItem>
           ))}
