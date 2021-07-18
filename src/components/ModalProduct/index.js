@@ -28,6 +28,10 @@ const ModalProduct = ({ data, setStatus }) => {
     setQt(qt + 1);
   };
 
+  const handleAddToCart = () => {
+    setStatus(false);
+  };
+
   useEffect(() => {
     setQt(1);
   }, [data]);
@@ -71,7 +75,7 @@ const ModalProduct = ({ data, setStatus }) => {
       <ProductButtons>
         <ProductButton small onClick={() => setStatus(false)}>Cancelar</ProductButton>
 
-        <ProductButton>Adicionar ao Carrinho</ProductButton>
+        <ProductButton onClick={handleAddToCart}>Adicionar ao Carrinho</ProductButton>
       </ProductButtons>
     </Container>
   );
