@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 
 import {
@@ -23,7 +22,6 @@ import api from '../../api';
 let timer;
 
 const HomeScreen = () => {
-  const history = useHistory();
   const [headerSearch, setHeaderSearch] = useState('');
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);

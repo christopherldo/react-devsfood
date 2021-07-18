@@ -18,23 +18,6 @@ const fetchGet = async (endpoint = '', headers = {}, body) => {
   return json;
 };
 
-const fetchPost = async (endpoint = '', headers = {}, body = {}) => {
-  const url = BASE_API + endpoint;
-
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body,
-  });
-
-  const json = await res.json();
-  return json;
-};
-
 export default {
   getCategories: async () => fetchGet('/categories'),
   getProducts: async (category = '', page = 1, search = '') => {
