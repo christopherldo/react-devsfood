@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
-  CartArea, CartHeader, CartIcon, CartText, CartBody,
+  CartArea,
+  CartHeader,
+  CartIcon,
+  CartText,
+  CartBody,
+  ProductsArea,
+  ProductItem,
+  ProductPhoto,
+  ProductInfoArea,
+  ProductName,
+  ProductPrice,
+  ProductQuantityArea,
 } from './styled';
 
 const Cart = () => {
   const products = useSelector((state) => state.cart.products);
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   return (
     <CartArea>
@@ -19,11 +30,34 @@ const Cart = () => {
           {products.length}
           )
         </CartText>
+
         {show
         && <CartIcon src="./assets/down.png" />}
       </CartHeader>
       <CartBody show={show}>
-        <div style={{ height: 300, backgroundColor: 'red' }} />
+        <ProductsArea>
+          {products.map((item) => (
+            <ProductItem key={item.id}>
+              <ProductPhoto src={item.image} />
+
+              <ProductInfoArea>
+                <ProductName>
+                  {item.name}
+                </ProductName>
+
+                <ProductPrice>
+                  R$
+                  {' '}
+                  {parseFloat(item.price).toFixed(2).replace('.', ',')}
+                </ProductPrice>
+              </ProductInfoArea>
+
+              <ProductQuantityArea>
+                ...
+              </ProductQuantityArea>
+            </ProductItem>
+          ))}
+        </ProductsArea>
       </CartBody>
     </CartArea>
   );
